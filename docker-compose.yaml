@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  mongodb:
+    container_name: spacer_term_service_db
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./db:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=terms

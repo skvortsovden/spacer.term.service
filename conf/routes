@@ -1,0 +1,11 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# terms routing
+GET     /terms                controllers.TermController.findAll()
+GET     /terms/:id            controllers.TermController.findOne(id: String)
+POST    /terms                controllers.TermController.create()
+PUT     /terms/:id            controllers.TermController.update(id: String)
+DELETE  /terms/:id            controllers.TermController.delete(id: String)
