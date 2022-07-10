@@ -38,8 +38,9 @@
 /qbin
 
 # sbt's target directories
+/project/project/
+/project/target/
 /target/
-/project/**/target/
 /test/macro-annot/target/
 /test/files/target/
 /test/target/
