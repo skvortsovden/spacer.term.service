@@ -53,9 +53,9 @@ class TermController @Inject() (implicit
           .validate[Term]
           .fold(
             _ => Future.successful(BadRequest("Cannot parse request body")),
-            movie =>
-              termRepository.create(movie).map { _ =>
-                Created(Json.toJson(movie))
+            term =>
+              termRepository.create(term).map { _ =>
+                Created(Json.toJson(term))
               }
           )
       }
@@ -68,15 +68,15 @@ class TermController @Inject() (implicit
           .validate[Term]
           .fold(
             _ => Future.successful(BadRequest("Cannot parse request body")),
-            movie => {
+            term => {
               val objectIdTryResult = BSONObjectID.parse(id)
               objectIdTryResult match {
                 case Success(objectId) =>
-                  termRepository.update(objectId, movie).map { result =>
+                  termRepository.update(objectId, term).map { result =>
                     Ok(Json.toJson(result.ok))
                   }
                 case Failure(_) =>
-                  Future.successful(BadRequest("Cannot parse the movie id"))
+                  Future.successful(BadRequest("Cannot parse the term id"))
               }
             }
           )
@@ -93,7 +93,7 @@ class TermController @Inject() (implicit
               NoContent
             }
           case Failure(_) =>
-            Future.successful(BadRequest("Cannot parse the movie id"))
+            Future.successful(BadRequest("Cannot parse the term id"))
         }
       }
   }
